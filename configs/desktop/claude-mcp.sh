@@ -1,21 +1,12 @@
 #!/bin/bash
-# Run these commands to add MCP servers to Claude CLI on the Bazzite desktop.
-# Each command registers a server globally.
+# RECOMMENDED: Direct install approach.
+# Run these commands to add MCP servers to Claude CLI.
 
-claude mcp add commerce-extensibility -- \
-  docker run --rm -i \
-  -v /home/me:/home/me:ro \
-  ghcr.io/superterran/mcp-toolchain:commerce commerce
+# Install MCP servers first:
+# npm install -g @adobe-commerce/commerce-extensibility-tools @adobe/aio-cli
+# npm install -g @webkult/phpstan-mcp-server
+# uvx install basic-memory
 
-claude mcp add phpstan -- \
-  docker run --rm -i \
-  -v /home/me:/home/me:ro \
-  ghcr.io/superterran/mcp-toolchain:commerce phpstan
-
-claude mcp add basic-memory -- \
-  docker run --rm -i \
-  -v /home/me:/home/me:ro \
-  -v "/home/me/Documents/Cloud Vault/AI Memory:/home/me/Documents/Cloud Vault/AI Memory:rw" \
-  -v mcp-basic-memory-data:/data \
-  -e BASIC_MEMORY_HOME=/data \
-  ghcr.io/superterran/mcp-toolchain:knowledge basic-memory
+claude mcp add commerce-extensibility -s user -- commerce-extensibility-tools-mcp-server
+claude mcp add phpstan -s user -- phpstan-mcp-server
+claude mcp add basic-memory -s user -- uvx basic-memory mcp

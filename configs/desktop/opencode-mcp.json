@@ -1,30 +1,22 @@
 {
-  "_comment": "Merge the 'mcp' block into your ~/.config/opencode/opencode.json",
+  "_comment": "RECOMMENDED: Direct install approach. Merge into ~/.config/opencode/opencode.json",
+  "_comment_docker": "For Docker isolation approach, see configs/docker/ directory",
   "mcp": {
     "commerce-extensibility": {
       "type": "local",
-      "command": ["docker", "run", "--rm", "-i",
-        "-v", "/home/me:/home/me:ro",
-        "ghcr.io/superterran/mcp-toolchain:commerce", "commerce"],
+      "command": ["commerce-extensibility-tools-mcp-server"],
       "enabled": true,
       "timeout": 15000
     },
     "phpstan": {
       "type": "local",
-      "command": ["docker", "run", "--rm", "-i",
-        "-v", "/home/me:/home/me:ro",
-        "ghcr.io/superterran/mcp-toolchain:commerce", "phpstan"],
+      "command": ["phpstan-mcp-server"],
       "enabled": true,
       "timeout": 15000
     },
     "basic-memory": {
       "type": "local",
-      "command": ["docker", "run", "--rm", "-i",
-        "-v", "/home/me:/home/me:ro",
-        "-v", "/home/me/Documents/Cloud Vault/AI Memory:/home/me/Documents/Cloud Vault/AI Memory:rw",
-        "-v", "mcp-basic-memory-data:/data",
-        "-e", "BASIC_MEMORY_HOME=/data",
-        "ghcr.io/superterran/mcp-toolchain:knowledge", "basic-memory"],
+      "command": ["uvx", "basic-memory", "mcp"],
       "enabled": true,
       "timeout": 10000
     }

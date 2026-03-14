@@ -1,0 +1,31 @@
+{
+  "_comment": "DOCKER APPROACH: Use when you need heavy isolation. Requires ghcr.io/superterran/mcp-toolchain images.",
+  "mcp": {
+    "commerce-extensibility": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "-v", "/home/me:/home/me:ro",
+        "ghcr.io/superterran/mcp-toolchain:commerce", "commerce"],
+      "enabled": true,
+      "timeout": 15000
+    },
+    "phpstan": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "-v", "/home/me:/home/me:ro",
+        "ghcr.io/superterran/mcp-toolchain:commerce", "phpstan"],
+      "enabled": true,
+      "timeout": 15000
+    },
+    "basic-memory": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "-v", "/home/me:/home/me:ro",
+        "-v", "mcp-basic-memory-data:/data",
+        "-e", "BASIC_MEMORY_HOME=/data",
+        "ghcr.io/superterran/mcp-toolchain:knowledge", "basic-memory"],
+      "enabled": true,
+      "timeout": 10000
+    }
+  }
+}

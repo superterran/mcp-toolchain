@@ -1,29 +1,19 @@
 {
-  "_comment": "Merge the entries under 'servers' into your ~/.config/Code/User/mcp.json",
+  "_comment": "RECOMMENDED: Direct install approach. Merge entries into ~/.config/Code/User/mcp.json",
+  "_comment_docker": "For Docker isolation approach, see configs/docker/ directory",
   "servers": {
     "commerce-extensibility": {
       "type": "stdio",
-      "command": "docker",
-      "args": ["run", "--rm", "-i",
-        "-v", "/home/me:/home/me:ro",
-        "ghcr.io/superterran/mcp-toolchain:commerce", "commerce"]
+      "command": "commerce-extensibility-tools-mcp-server"
     },
     "phpstan": {
       "type": "stdio",
-      "command": "docker",
-      "args": ["run", "--rm", "-i",
-        "-v", "/home/me:/home/me:ro",
-        "ghcr.io/superterran/mcp-toolchain:commerce", "phpstan"]
+      "command": "phpstan-mcp-server"
     },
     "basic-memory": {
       "type": "stdio",
-      "command": "docker",
-      "args": ["run", "--rm", "-i",
-        "-v", "/home/me:/home/me:ro",
-        "-v", "/home/me/Documents/Cloud Vault/AI Memory:/home/me/Documents/Cloud Vault/AI Memory:rw",
-        "-v", "mcp-basic-memory-data:/data",
-        "-e", "BASIC_MEMORY_HOME=/data",
-        "ghcr.io/superterran/mcp-toolchain:knowledge", "basic-memory"]
+      "command": "uvx",
+      "args": ["basic-memory", "mcp"]
     }
   }
 }
