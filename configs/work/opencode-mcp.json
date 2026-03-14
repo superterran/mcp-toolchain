@@ -1,0 +1,34 @@
+{
+  "_comment": "Merge the 'mcp' block into your ~/.config/opencode/opencode.json on the work Mac",
+  "_note": "Uses :cached mount flag for macOS VirtioFS performance. Mounts Zscaler CA bundle for HTTPS through corporate proxy.",
+  "mcp": {
+    "commerce-extensibility": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "-v", "{env:HOME}:{env:HOME}:ro,cached",
+        "-e", "NODE_EXTRA_CA_CERTS={env:HOME}/.ssl/combined-ca.pem",
+        "ghcr.io/superterran/mcp-toolchain:commerce", "commerce"],
+      "enabled": true,
+      "timeout": 15000
+    },
+    "phpstan": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "-v", "{env:HOME}:{env:HOME}:ro,cached",
+        "ghcr.io/superterran/mcp-toolchain:commerce", "phpstan"],
+      "enabled": true,
+      "timeout": 15000
+    },
+    "basic-memory": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "-v", "{env:HOME}:{env:HOME}:ro,cached",
+        "-v", "{env:HOME}/Documents/Cloud Vault/AI Memory:{env:HOME}/Documents/Cloud Vault/AI Memory:rw",
+        "-v", "mcp-basic-memory-data:/data",
+        "-e", "BASIC_MEMORY_HOME=/data",
+        "ghcr.io/superterran/mcp-toolchain:knowledge", "basic-memory"],
+      "enabled": true,
+      "timeout": 10000
+    }
+  }
+}

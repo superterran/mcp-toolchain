@@ -1,0 +1,31 @@
+{
+  "_comment": "Merge into ~/Library/Application Support/Code/User/mcp.json (or ~/.config/Code/User/mcp.json) on work Mac",
+  "_note": "Uses :cached mount flag for macOS VirtioFS performance",
+  "servers": {
+    "commerce-extensibility": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["run", "--rm", "-i",
+        "-v", "${HOME}:${HOME}:ro,cached",
+        "-e", "NODE_EXTRA_CA_CERTS=${HOME}/.ssl/combined-ca.pem",
+        "ghcr.io/superterran/mcp-toolchain:commerce", "commerce"]
+    },
+    "phpstan": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["run", "--rm", "-i",
+        "-v", "${HOME}:${HOME}:ro,cached",
+        "ghcr.io/superterran/mcp-toolchain:commerce", "phpstan"]
+    },
+    "basic-memory": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["run", "--rm", "-i",
+        "-v", "${HOME}:${HOME}:ro,cached",
+        "-v", "${HOME}/Documents/Cloud Vault/AI Memory:${HOME}/Documents/Cloud Vault/AI Memory:rw",
+        "-v", "mcp-basic-memory-data:/data",
+        "-e", "BASIC_MEMORY_HOME=/data",
+        "ghcr.io/superterran/mcp-toolchain:knowledge", "basic-memory"]
+    }
+  }
+}
