@@ -2,6 +2,12 @@
   "_comment": "Merge into ~/Library/Application Support/Code/User/mcp.json (or ~/.config/Code/User/mcp.json) on work Mac",
   "_note": "Uses :cached mount flag for macOS VirtioFS performance",
   "servers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["run", "--rm", "-i",
+        "ghcr.io/superterran/mcp-toolchain:local", "playwright"]
+    },
     "commerce-extensibility": {
       "type": "stdio",
       "command": "docker",

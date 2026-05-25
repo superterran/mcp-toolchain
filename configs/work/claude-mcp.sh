@@ -3,6 +3,10 @@
 # Uses :cached mount flag for macOS Docker volume performance.
 # Includes Zscaler CA bundle for corporate HTTPS proxy.
 
+claude mcp add playwright -- \
+  docker run --rm -i \
+  ghcr.io/superterran/mcp-toolchain:local playwright
+
 claude mcp add commerce-extensibility -- \
   docker run --rm -i \
   -v "$HOME:$HOME:ro,cached" \

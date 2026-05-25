@@ -63,6 +63,9 @@ jobs:
           - pack: commerce
             file: packs/commerce/Dockerfile
             base: base
+          - pack: local
+            file: packs/local/Dockerfile
+            base: base
           - pack: knowledge
             file: packs/knowledge/Dockerfile
             base: base

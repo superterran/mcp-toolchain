@@ -2,6 +2,13 @@
   "_comment": "Merge the 'mcp' block into your ~/.config/opencode/opencode.json on the work Mac",
   "_note": "Uses :cached mount flag for macOS VirtioFS performance. Mounts Zscaler CA bundle for HTTPS through corporate proxy.",
   "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "ghcr.io/superterran/mcp-toolchain:local", "playwright"],
+      "enabled": true,
+      "timeout": 15000
+    },
     "commerce-extensibility": {
       "type": "local",
       "command": ["docker", "run", "--rm", "-i",

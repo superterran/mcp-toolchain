@@ -2,6 +2,18 @@
   "_comment": "RECOMMENDED: Direct install approach. Merge into ~/.config/opencode/opencode.json",
   "_comment_docker": "For Docker isolation approach, see configs/docker/ directory",
   "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["playwright-mcp"],
+      "enabled": true,
+      "timeout": 15000
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["mcp-server-filesystem", "{env:HOME}"],
+      "enabled": true,
+      "timeout": 10000
+    },
     "commerce-extensibility": {
       "type": "local",
       "command": ["commerce-extensibility-tools-mcp-server"],

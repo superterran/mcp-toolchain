@@ -21,6 +21,12 @@ case "$SERVER" in
   obsidian|mcp-obsidian)
     exec npx -y mcp-obsidian "$@"
     ;;
+  playwright)
+    exec playwright-mcp "$@"
+    ;;
+  filesystem|fs)
+    exec mcp-server-filesystem "$@"
+    ;;
   list|--list|-l)
     echo "Available MCP servers:"
     echo ""
@@ -28,6 +34,8 @@ case "$SERVER" in
     command -v phpstan-mcp-server >/dev/null 2>&1 && echo "  phpstan       - PHPStan static analysis"
     command -v basic-memory >/dev/null 2>&1 && echo "  basic-memory  - Bidirectional knowledge base (Obsidian-compatible)"
     command -v npx >/dev/null 2>&1 && echo "  obsidian      - Obsidian vault read-only access"
+    command -v playwright-mcp >/dev/null 2>&1 && echo "  playwright    - Browser automation via Playwright MCP"
+    command -v mcp-server-filesystem >/dev/null 2>&1 && echo "  filesystem    - Explicit local filesystem access"
     echo ""
     echo "Usage: entrypoint.sh <server-name> [args...]"
     ;;
@@ -40,6 +48,7 @@ case "$SERVER" in
     echo ""
     echo "Images:"
     echo "  ghcr.io/superterran/mcp-toolchain:base       - Base (Node + Python)"
+    echo "  ghcr.io/superterran/mcp-toolchain:local      - Playwright + filesystem"
     echo "  ghcr.io/superterran/mcp-toolchain:commerce    - Adobe Commerce + PHP + PHPStan"
     echo "  ghcr.io/superterran/mcp-toolchain:knowledge   - basic-memory + mcp-obsidian"
     echo "  ghcr.io/superterran/mcp-toolchain:drupal      - Drupal + Oracle (stub)"

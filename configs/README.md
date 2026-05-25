@@ -13,6 +13,7 @@ The default configs in `desktop/` and `work/` use direct npm/uvx installs. This 
 # Core MCP servers
 npm install -g @bitbonsai/mcpvault          # Obsidian vault access
 uvx install basic-memory                     # Knowledge/memory
+npm install -g @playwright/mcp @modelcontextprotocol/server-filesystem  # Local browser/filesystem
 
 # Project-specific MCP servers  
 npm install -g @webkult/phpstan-mcp-server  # PHP static analysis
@@ -42,6 +43,8 @@ docker build -t ghcr.io/superterran/mcp-toolchain:commerce -f packs/commerce/Doc
 
 | Server | Package | Purpose |
 |--------|---------|---------|
+| playwright | @playwright/mcp | Browser automation for local clients |
+| filesystem | @modelcontextprotocol/server-filesystem | Scoped local filesystem access |
 | mcpvault | @bitbonsai/mcpvault | Obsidian vault access |
 | basic-memory | basic-memory (uvx) | Bidirectional knowledge |
 | phpstan | @webkult/phpstan-mcp-server | PHP static analysis |

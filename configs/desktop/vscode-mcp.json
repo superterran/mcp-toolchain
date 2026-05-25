@@ -2,6 +2,15 @@
   "_comment": "RECOMMENDED: Direct install approach. Merge entries into ~/.config/Code/User/mcp.json",
   "_comment_docker": "For Docker isolation approach, see configs/docker/ directory",
   "servers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "playwright-mcp"
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "mcp-server-filesystem",
+      "args": ["${HOME}"]
+    },
     "commerce-extensibility": {
       "type": "stdio",
       "command": "commerce-extensibility-tools-mcp-server"

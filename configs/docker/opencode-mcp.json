@@ -1,6 +1,21 @@
 {
   "_comment": "DOCKER APPROACH: Use when you need heavy isolation. Requires ghcr.io/superterran/mcp-toolchain images.",
   "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "ghcr.io/superterran/mcp-toolchain:local", "playwright"],
+      "enabled": true,
+      "timeout": 15000
+    },
+    "filesystem": {
+      "type": "local",
+      "command": ["docker", "run", "--rm", "-i",
+        "-v", "/home/me:/home/me:rw",
+        "ghcr.io/superterran/mcp-toolchain:local", "filesystem", "/home/me"],
+      "enabled": true,
+      "timeout": 10000
+    },
     "commerce-extensibility": {
       "type": "local",
       "command": ["docker", "run", "--rm", "-i",
